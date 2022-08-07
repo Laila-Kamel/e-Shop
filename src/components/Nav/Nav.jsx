@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import CartIcon from "../CartIcon";
 import style from "./Nav.module.scss";
 
 const Nav = () => {
@@ -6,6 +7,10 @@ const Nav = () => {
     isActive ? `${style.Link} ${style.Link_Active}` : style.Link;
   return (
     <nav className={style.Nav}>
+      {/* <div className={style.Image_Container}>
+        <image src="" alt="eShop Logo"/>
+      </div> */}
+      <div className={style.Nav_Links}>
       <NavLink className={activeStyle} to="/">
         Home
       </NavLink>
@@ -21,6 +26,8 @@ const Nav = () => {
       <NavLink className={activeStyle} to="/women">
         Women's clothing
       </NavLink>
+      </div>
+      <CartIcon/>
     </nav>
   );
 };

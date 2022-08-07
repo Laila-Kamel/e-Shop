@@ -1,68 +1,76 @@
-.Container{
-    display: flex;
-    justify-content: space-between;
-    align-items:stretch;
-    padding-top: 10px;
-    
-    width:70%;
-    margin: auto;
-    margin-top:100px;
-    // text-align: center;
-    background-color: white;
+.Container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  padding-top: 10px;
+
+  width: 70%;
+  margin: auto;
+  // margin-top: 50px;
+  // text-align: center;
+  background-color: white;
 }
-.Text_Container{
-    padding: 0 15px;
-    width:40%;
-    background-color: white;
+.Text_Container {
+  padding: 0 15px;
+  width: 40%;
+  background-color: white;
 }
-.Image{
-    width:300px;
-    // height: 350px;
+.Image {
+  width: 300px;
+  // height: 350px;
 }
-.Image_Container{
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width:60%;
+.Image_Container {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
 }
-.red{
-    color:red
+._FavouritedBtn {
+  border: none;
+  background-color: transparent;
 }
-.blue{
-    color:blue
+.black {
+  font-size: 40px;
+  color: black;
+  vertical-align: middle;
+}
+.grey {
+  font-size: 40px;
+  color: #E5E5E5;
+  vertical-align: middle;
 }
 
-.Title{
-    font-size: 26px;
-    font-weight: bold;
-    margin-bottom: 0;
-    margin-top: 0;
+.Title {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 0;
+  margin-top: 0;
 }
-.RatingWithID{
-display: flex;
-justify-content: space-between;
-padding-right:10px;
-padding-left:15px;
-font-size: 12px;
-margin-top: 0px;
-height: fit-content;
-padding-top: 0;
+.RatingWithID {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 10px;
+  padding-left: 15px;
+  font-size: 12px;
+  margin-top: 0px;
+  height: fit-content;
+  padding-top: 0;
 }
-.Rating{
-    display: flex;
-    justify-content: space-between;
-    width:40%
+.Rating {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
 }
-select{
-    padding: 0 5px;
-    margin-left: 20px;
+select {
+  padding: 0 5px;
+  margin-left: 20px;
 }
-.SubmitBtn{
-    padding:10px 20px;
-    width:80%;
-    margin: auto;
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
+.SubmitBtn {
+  padding: 10px 20px;
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
 }

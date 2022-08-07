@@ -7,7 +7,7 @@ const ProductCard = ({ productProp }) => {
     productProp;
   return (
     <section className={style.Card}>
-      <NavLink to={`/Jewelery/${id}`} className={style.Image_Container}><img className={style.Card_Image} src={image} alt={{title}} /> </NavLink>
+      <NavLink to={`/Jewelery/${id}`} className={style.Image_Container}><img className={style.Card_Image} src={image} alt={title} /> </NavLink>
       <NavLink to={`/Jewelery/${id}`} className={style.Card_Title}>{title}</NavLink>
       <NavLink to={`/Jewelery/${id}`} className={style.Card_Price}>AU${price}</NavLink>
       {/* <p>{product.rating}</p> */}
