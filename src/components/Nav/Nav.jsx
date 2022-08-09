@@ -3,6 +3,7 @@ import CartIcon from "../CartIcon";
 import FavouriteListIcon from "../../components/FavouriteListIcon";
 import style from "./Nav.module.scss";
 import Icons from "../../containers/Icons";
+import logo from "./../../images/logo.png";
 
 const Nav = () => {
   const activeStyle = ({ isActive }) =>
@@ -10,25 +11,9 @@ const Nav = () => {
   return (
     <nav className={style.Nav}>
       <div className={style.Image_Container}>
-        <image src="../../images/logo.png" alt="eShop Logo"/>
+        <img src={logo} alt="eShop Logo" className={style.logo}/>
       </div>
-      <div className={style.Nav_Links}>
-      <NavLink className={activeStyle} to="/">
-        Home
-      </NavLink>
-      <NavLink className={activeStyle} to="/electronics">
-        Electronics
-      </NavLink>
-      <NavLink className={activeStyle} to="/jewelery" category="jewelery">
-        Jewelery
-      </NavLink>
-      <NavLink className={activeStyle} to="/men">
-        Men's clothing
-      </NavLink>
-      <NavLink className={activeStyle} to="/women">
-        Women's clothing
-      </NavLink>
-      </div>
+
       <Icons/>
     </nav>
   );

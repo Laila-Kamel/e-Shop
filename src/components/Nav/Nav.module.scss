@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-around;
     padding-top: 30px;
-    
+    align-items: center;
 }
 
 .Link{
@@ -14,4 +14,17 @@
 .Link_Active{
     text-decoration: underline;
     font-weight: bolder;
+}
+.logo{
+    width:15%;
+    margin: auto;
+    text-align: center;
+    // height:100px;
+
+}
+.Image_Container{
+    display: flex;
+    // flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
