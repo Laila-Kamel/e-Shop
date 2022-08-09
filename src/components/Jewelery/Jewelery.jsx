@@ -4,12 +4,12 @@ import Carousel from "../Carousel";
 import ProductCard from "../ProductCard";
 import style from './Jewelery.module.scss';
 import { ItemsInCartContext } from "../../Context/Context";
+import { NoOfFaouritedItemsContext } from "../../Context/NoOfFaouritedItemsProvider";
 
 const Jewelery = ({ category }) => {
   console.log(category);
   const [products, setProducts] = useState([]);
   const{items,setItems}=useContext(ItemsInCartContext);
-  const [noOfItemsInCart,setNoOfItemsInCart]=useState(0)
   
   useEffect(() => {
     const wrapper = async () => {
@@ -20,7 +20,6 @@ const Jewelery = ({ category }) => {
     wrapper();
   }, []);
 
-  getProducts();
   return (
     <>
     <Carousel/>

@@ -9,12 +9,16 @@ import Women from "./components/Women/Women";
 import ProductPage from "./containers/ProductPage";
 import ItemsInCartProvider from "./Context/Context";
 import CartPage from "./containers/CartPage";
+import ThankYou from "./containers/ThankYou/ThankYou";
+import FavouriteListPage from './containers/FavouriteListPage'
 import NoOfItemsInCartProvider from "./Context/NoOfItemsPRovider";
+import NoOfFaouritedItemsProvider from "./Context/NoOfFaouritedItemsProvider";
 
 function App() {
   return (
     <PageWrapper>
       <ItemsInCartProvider>
+      <NoOfFaouritedItemsProvider>
       <NoOfItemsInCartProvider>
         <BrowserRouter>
           <Nav />
@@ -26,13 +30,16 @@ function App() {
               element={<Jewelery category={"jewelery"} />}
             />
             <Route path="/men" element={<Men />} />
+            <Route path="/thankYou" element={<ThankYou />} />
             <Route path="/women" element={<Women />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/favouriteList" element={<FavouriteListPage />} />
             <Route path="/jewelery/:productId" element={<ProductPage />} />
           </Routes>
           {/* <Footer/> */}
         </BrowserRouter>
         </NoOfItemsInCartProvider>
+        </NoOfFaouritedItemsProvider>
       </ItemsInCartProvider>
     </PageWrapper>
   );

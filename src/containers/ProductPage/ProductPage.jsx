@@ -1,27 +1,37 @@
 import React, { useContext } from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProductById } from "../../services";
+import { getProductById,getListOfFavouritedItems } from "../../services";
 import style from "./ProductPage.module.scss";
 import { IoIosHeart } from "react-icons/io";
 import ColorVariant from "../../components/ColorVariant/ColorVariant";
 import { ItemsInCartContext } from "../../Context/Context";
 import { NoOfItemsInCartContext } from "../../Context/NoOfItemsPRovider";
+import { NoOfFaouritedItemsContext } from "../../Context/NoOfFaouritedItemsProvider";
+import { isFavourited } from "../../services";
 
 const ProductPage = () => {
   const params = useParams();
   const{items,setItems}=useContext(ItemsInCartContext);
+  const { noOfFavouritedItems, setnoOfFavouritedItems } = useContext(
+    NoOfFaouritedItemsContext
+  );
   const {noOfItems,setNoOfItems}=useContext(NoOfItemsInCartContext)
   const { productId } = params;
   console.log(params);
   console.log(productId);
   const [product, setProduct] = useState("");
-  const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState();
   const [prdctID,setPrdctID]=useState(productId);
-  // const [noOfItemsInCart,setNoOfItemsInCart]=useState(0);
-  const [orderItems,setOrderItems]=useState([]);
+  const [loading, setLoading] = useState(false);
 
 
+  const check=(e)=>{
+  
+    if(e.target.value>product.quantity){
+    alert(`No enough Stock,the available stock is ${product.quantity}`)
+    e.target.value=1;}
+  }
   const addToCartClicked=()=>{
     const qty=parseInt(document.getElementById("qty").value);
     console.log(qty);
@@ -30,34 +40,31 @@ const ProductPage = () => {
       alert(`No enough stock, the available stock is ${product.quantity} pieces`);
     }
     else{
-    items.push({...product,quantityOrdered:qty})//
-    setItems(items)//
-    // items.push(product);
-    // console.log(orderItems);
+    items.push({...product,quantityOrdered:qty})
+    setItems(items)
     console.log(items);
     console.log(items.length);
-    // setNoOfItemsInCart(items.length)//
     const totalItemsOrdered=items.reduce((acc,current)=>{
       acc+=parseInt(current.quantityOrdered);
       return acc
     },0)
-    // setNoOfItems(items.length)
     setNoOfItems(totalItemsOrdered)//
     console.log(qty);
     console.log(noOfItems);//
     console.log(totalItemsOrdered);
   }
 }
+const favouriteBtnClicked=async(isfavourite,id)=>{
+  setClicked(!clicked);
+  await isFavourited(isfavourite,id);
+}
   
-  const isClicked = () => {
-    setClicked(true);
-  };
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // setItems(items)
-    // setNoOfItems(items.length);
-    setItems(items)//
+    setClicked(product.favourited)
+    console.log(product.favourited);
+    console.log(clicked);
+    setItems(items)
     setLoading(true);
     const wrapper = async () => {
       try {
@@ -71,7 +78,7 @@ const ProductPage = () => {
       }
     };
     wrapper();
-  }, [prdctID]);
+  }, [prdctID,product.favourited]);
 
   console.log(product);
 
@@ -98,7 +105,7 @@ const ProductPage = () => {
               <ColorVariant title={product.title} productid={prdctID} setProductId={setPrdctID}/>
 
               <label htmlFor="qty">Quantity</label>
-              <select id="qty" type="number">
+              <select id="qty" type="number" onChange={check}>
                 <option value="1" default>
                   1
                 </option>
@@ -114,10 +121,7 @@ const ProductPage = () => {
                 value="Add To Cart"
               />
               <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  setClicked(!clicked);
-                }}
+                onClick={(e)=>{e.preventDefault();favouriteBtnClicked(product.favourited,product.id)}}
                 className={style._FavouritedBtn}
               >
                 <IoIosHeart className={clicked ? style.black : style.grey} />

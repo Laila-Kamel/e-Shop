@@ -1,0 +1,10 @@
+._Container,._Headers{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width:70%;
+    margin: auto;
+    text-align: center;
+}
+._Headers>p{
+    font-weight: bold;
+}

@@ -1,25 +1,13 @@
 import { firestore } from "../firestore";
 
 export const getProducts=async()=>{
-    // const response=await fetch(`https://fakestoreapi.com/products/category/${category}`);
-    // const data=await response.json();
-    // console.log(data);
-    // return data
     const collectionRef=firestore.collection("Product");
     const data=await collectionRef.get();
     const rawDocuments=data.docs;
-    console.log(rawDocuments);
-    console.log(rawDocuments[0].data());
-    console.log(rawDocuments[0].id);
     const cleanedDocuments= rawDocuments.map((rawDoc)=>({...rawDoc.data(),id:rawDoc.id}));
-    console.log(cleanedDocuments);
     return cleanedDocuments
 }
 export const getProductsImage=async()=>{
-    // const response=await fetch(`https://fakestoreapi.com/products/${id}`);
-    // const data=await response.json();
-    // if(!data) throw new Error ("Not a valid Product");
-    // return data
     const collectionRef=firestore.collection("Product");
     const data=await collectionRef.get();
     const rawDocuments=data.docs;
@@ -30,26 +18,9 @@ export const getProductsImage=async()=>{
 
 export const getProductById=async(id)=>{
     const collectionRef=firestore.collection("Product");
-    const data=await collectionRef.get();
-    const rawDocuments=data.docs;
-    console.log(rawDocuments);
-    // console.log(rawDocuments[0].data());
-    // console.log(rawDocuments[0].id);
-    // const cleanedDocuments= rawDocuments.map((rawDoc)=>({...rawDoc.data(),id:rawDoc.id})).find((rawDoc)=>{
-        
-    //     if(rawDoc.id==id){
-    //         console.log(rawDoc.id); 
-    //         return rawDoc
-    //     }
-   //});
-   const filteredDocument= rawDocuments.find((fltrdDoc)=>fltrdDoc.id==id
-    // {
-    //     console.log(fltrdDoc.id);
-    //     console.log(id);
-     
-)
-// cleanedDocuments={...cleanedDocuments.data(),id:cleanedDocuments.id}
-const cleanedDocument={...filteredDocument.data(),id:filteredDocument.id}
+    const docRef=collectionRef.doc(id);
+   const rawDoc=await docRef.get();
+   const cleanedDocument={id:rawDoc.id,...rawDoc.data()}
     console.log(cleanedDocument);
     return cleanedDocument
 }
@@ -60,8 +31,56 @@ export const getVariantColor=async(title)=>{
     const rawDocuments=data.docs;
     console.log(rawDocuments);
    const cleanedDocuments= rawDocuments.filter((fltrdDoc)=>
-    fltrdDoc.data().title==title
-).map(rawDoc=>({...rawDoc.data(),id:rawDoc.id}));
+    fltrdDoc.data().title==title)
+    .map(rawDoc=>({...rawDoc.data(),id:rawDoc.id}));
     console.log(cleanedDocuments);
     return cleanedDocuments
+}
+export const isFavourited=async(favourite,id)=>{
+    const collectionRef=firestore.collection("Product");
+    const docRef=collectionRef.doc(id);
+    // console.log(docRef.get());
+    await docRef.update({favourited:!favourite})
+    return true;
+}
+
+export const getListOfFavouritedItems=async()=>{
+    const collectionRef=firestore.collection("Product");
+    const data=await collectionRef.get();
+    const rawDocuments=data.docs;
+    const cleanedDocuments= rawDocuments.filter(rawDoc=>(rawDoc.data().favourited==true)).map((rawDoc)=>({...rawDoc.data(),id:rawDoc.id}));
+    return cleanedDocuments
+}
+
+export const updateQuantity=async(id,orderedQuantity,quantity)=>{
+    const collectionRef=firestore.collection("Product");
+    const docRef=collectionRef.doc(id);
+    // console.log(docRef.get());
+    await docRef.update({quantity:quantity-orderedQuantity})
+    return true;
+}
+export const addConfirmedOrder=async(items)=>{
+    const collectionRef=firestore.collection('Cart');
+    // items.forEach(async(element) => await collectionRef.add(element));
+    // const collectionRef=firestore.collection('Cart');
+    // return items.map(async(item)=>await collectionRef.add(items))
+    // const newOrder=await collectionRef.add(item);
+    // return newOrder;
+
+    items.map(item=>{
+        collectionRef.doc('one').collection('items').doc().set(item)
+    })
+    
+    // var landmarks = Promise.all(items.map((item)=>{
+    //     collectionRef.doc().set(item)
+    // }))
+    console.log("added");
+        // citiesRef.doc('SF').collection('landmarks').doc().set({
+        //     name: 'Golden Gate Bridge',
+        //     type: 'bridge'
+        // }),
+        // citiesRef.doc('SF').collection('landmarks').doc().set({
+        //     name: 'Legion of Honor',
+        //     type: 'museum'
+        // })])
 }

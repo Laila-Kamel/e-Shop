@@ -16,6 +16,7 @@ const Carousel = () => {
   };
 
   const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const wrapper = async () => {
@@ -23,16 +24,17 @@ const Carousel = () => {
       console.log(imgs);
       setImages(imgs);
     };
-    wrapper();
+    wrapper().then(()=>setLoading(false));
   }, []);
 
   console.log(images);
   return (
     <div>
+      {loading ?( <p>Loading....</p>):(
       <Slider {...settings} className={style.Container}>
-        {/* <div className={style.Carousel_Container}> */}
-          <h3>test</h3>
-          {/* <div className={style.Image_Container}>
+        <div className={style.Carousel_Container}>
+          {/* <h3>test</h3> */}
+          <div className={style.Image_Container}>
             <img
               src={images[0].image}
               alt={images[0].title}
@@ -69,8 +71,8 @@ const Carousel = () => {
           <div className={style.Text_Container}>
             <p className={style._Title}>{images[2].title}</p>
           </div>
-        </div> */}
-      </Slider>
+        </div>
+      </Slider>)}
     </div>
   );
 };
