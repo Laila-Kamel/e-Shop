@@ -24,6 +24,7 @@ const FavouriteListPage = () => {
     <>
       {favItems.length != 0 &&(
         <div>
+          <h2>Favourite Items List</h2>
           <div className={style._Headers}>
             <p>Item</p>
             <p>Price</p>
