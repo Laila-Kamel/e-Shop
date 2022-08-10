@@ -134,7 +134,7 @@ const CartPage = () => {
           <td className={style.bold}>{total}</td>
         </tr>
       </table>
-      <button className={style.confirmBtn} onClick={confirmOrder}>Confirm Order</button></div>):navigate("/Jewelery")}
+      <button className={style.confirmBtn} onClick={confirmOrder}>Confirm Order</button></div>):navigate("/")}
     </>
   );
 };

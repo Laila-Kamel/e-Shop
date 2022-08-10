@@ -20,16 +20,13 @@ function App() {
       <NoOfItemsInCartProvider>
         <BrowserRouter>
           <Nav />
-          <Jewelery/>
+          {/* <Jewelery/> */}
           <Routes>
-            <Route
-              path="/jewelery"
-              element={<Jewelery category={"jewelery"} />}
-            />
+          <Route path="/" element={<Jewelery/>} />
             <Route path="/thankYou" element={<ThankYou />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/favouriteList" element={<FavouriteListPage />} />
-            <Route path="/jewelery/:productId" element={<ProductPage />} />
+            <Route path="/:productId" element={<ProductPage />} />
           </Routes>
           <Footer/>
         </BrowserRouter>
