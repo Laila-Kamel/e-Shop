@@ -20,8 +20,8 @@ function App() {
       <NoOfItemsInCartProvider>
         <BrowserRouter>
           <Nav />
+          <Jewelery></Jewelery>
           <Routes>
-            <Route path="/" element={<h1>Home</h1>} />
             <Route
               path="/jewelery"
               element={<Jewelery category={"jewelery"} />}
