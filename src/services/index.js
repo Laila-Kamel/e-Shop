@@ -67,10 +67,10 @@ export const addConfirmedOrder=async(items)=>{
     // const newOrder=await collectionRef.add(item);
     // return newOrder;
 
-    items.map(item=>{
-        collectionRef.doc('one').collection('items').doc().set(item)
-    })
-    
+    // items.map(item=>{
+    //     collectionRef.doc('one').collection('items').doc().set(item)
+    // })
+    collectionRef.doc().collection('items').doc().set({ orderItems : items });
     // var landmarks = Promise.all(items.map((item)=>{
     //     collectionRef.doc().set(item)
     // }))
