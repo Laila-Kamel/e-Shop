@@ -6,7 +6,7 @@ const ThankYou = () => {
   return (
     <div className={style.Container}>
     <div className={style._Text}>Thank You for shopping with us....</div>
-    <NavLink to='/jewelery' className={style._Link}>Back to homepage</NavLink>
+    <NavLink to='/' className={style._Link}>Back to homepage</NavLink>
     </div>
   )
 }
